@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             {
                 if (crewMates[i] == null)
                 {
-                    CrewMate crew = Instantiate(crewmate, crewPos[noOfCrew].position, Quaternion.identity).GetComponent<CrewMate>();
+                    CrewMate crew = Instantiate(crewmate, crewPos[i].position, Quaternion.identity).GetComponent<CrewMate>();
                     crewMates[i] = crew;
 
                     crew.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
     public void Fire()
     {
         Destroy(selectedCrewmate.gameObject);
-
+        noOfCrew -= 1;
         ExitMenu();
     }
     public void ExitMenu()
