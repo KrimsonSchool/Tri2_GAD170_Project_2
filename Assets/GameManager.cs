@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     {
         caughtText.SetActive(true);
 
-        print(crewMates[noOfCrew]);
+        //print(crewMates[noOfCrew]);
         if (crewMates[noOfCrew] == null)
         {
             CrewMate crew = Instantiate(crewmate, crewPos[noOfCrew].position, Quaternion.identity).GetComponent<CrewMate>();
