@@ -7030,7 +7030,7 @@ MonoBehaviour:
   globalTimer: 0
   gTimerText: {fileID: 46821115}
   h: 0
-  timerMax: 7
+  timerMax: 15
 --- !u!1 &1516123656
 GameObject:
   m_ObjectHideFlags: 0

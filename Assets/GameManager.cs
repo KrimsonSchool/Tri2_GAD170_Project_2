@@ -49,14 +49,20 @@ public class GameManager : MonoBehaviour
 
         if (h < 0)
         {
-            caughtText.SetActive(false);
-            GameObject shp = Instantiate(ship, new Vector3(Random.Range(-240, 120), Random.Range(10, 90), 1000), Quaternion.identity);
-            shp.transform.eulerAngles = new Vector3(0, 180, 0);
-            //tmr = 0;
+            if (noOfCrew < 10)
+            {
+                caughtText.SetActive(false);
+                GameObject shp = Instantiate(ship, new Vector3(Random.Range(-240, 120), Random.Range(10, 90), 1000), Quaternion.identity);
+                shp.transform.eulerAngles = new Vector3(0, 180, 0);
+                //tmr = 0;
 
-
-            globalTimer = timerMax;
-            h = globalTimer * Application.targetFrameRate;
+                globalTimer = timerMax;
+                h = globalTimer * Application.targetFrameRate;
+            }
+            else
+            {
+                print("You Win!!!");
+            }
         }
 
         if (noOfCrew > crewMates.Length)

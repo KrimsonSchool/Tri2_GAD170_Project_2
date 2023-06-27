@@ -63,14 +63,15 @@ public class CrewMate : MonoBehaviour
                     {
                         if (gameManage.crewMates[i] != null)
                         {
-                            print(gameManage.crewMates[i].favouriteHobby + " -> " + targetHobby);
+                            //print(gameManage.crewMates[i].favouriteHobby + " -> " + targetHobby);
                             if (gameManage.crewMates[i].favouriteHobby == targetHobby)
                             {
-                                print("KILLIN!!!");
+                                //print("KILLIN!!!");
                                 Destroy(gameManage.crewMates[i].gameObject);
                                 gameManage.crewMates[i] = null;
                                 gameManage.noOfCrew -= 1;
                                 transform.Rotate(0, 90, 0);
+                                Destroy(gameObject);
                             }
                         }
                     }
