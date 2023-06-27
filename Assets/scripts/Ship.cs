@@ -33,6 +33,7 @@ public class Ship : MonoBehaviour
     private void OnMouseDown()
     {
         Caught();
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     public void Caught()
