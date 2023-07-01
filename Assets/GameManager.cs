@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
             else
             {
                 print("You Win!!!");
+
+                for (int i = 0; i < noOfCrew; i++)
+                {
+                    print("crew no " + i + ".Name = " + crewMates[i].name + " hobby = " + crewMates[i].favouriteHobby);
+                }
             }
         }
 
