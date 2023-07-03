@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         globalTimer = timerMax;
-        Application.targetFrameRate = 75;
+        Application.targetFrameRate = 120;
         h = globalTimer * Application.targetFrameRate;
     }
 
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
 
                 if (full)
                 {
-                    Camera.main.clearFlags = CameraClearFlags.Nothing;
+                    Camera.main.backgroundColor = Color.green;
                     print("You Win!!!");
                     caughtText.GetComponent<TMPro.TextMeshPro>().text = "You Win!!!";
                     gTimerText.text = "";
