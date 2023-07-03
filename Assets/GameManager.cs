@@ -29,11 +29,14 @@ public class GameManager : MonoBehaviour
     public int h;
 
     public int timerMax;
+
+
+    bool full;
     // Start is called before the first frame update
     void Start()
     {
         globalTimer = timerMax;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 75;
         h = globalTimer * Application.targetFrameRate;
     }
 
@@ -61,19 +64,39 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                print("You Win!!!");
-
-                for (int i = 0; i < noOfCrew; i++)
+                full = true;
+                for (int i = 0; i < crewMates.Length; i++)
                 {
-                    print("crew no " + i + ".Name = " + crewMates[i].name + " hobby = " + crewMates[i].favouriteHobby);
+                    if (crewMates[i] == null)
+                    {
+                        CrewMate crew = Instantiate(crewmate, crewPos[i].position, Quaternion.identity).GetComponent<CrewMate>();
+                        crewMates[i] = crew;
+
+                        crew.transform.eulerAngles = new Vector3(0, 180, 0);
+                        full = false;
+                        return;
+                    }
+                }
+
+                if (full)
+                {
+                    Camera.main.clearFlags = CameraClearFlags.Nothing;
+                    print("You Win!!!");
+                    caughtText.GetComponent<TMPro.TextMeshPro>().text = "You Win!!!";
+                    gTimerText.text = "";
+                    for (int i = 0; i < noOfCrew; i++)
+                    {
+                        print("crew no " + i + ".Name = " + crewMates[i].name + " hobby = " + crewMates[i].favouriteHobby);
+                    }
+                }
+                else
+                {
+                    noOfCrew -= 1;
                 }
             }
         }
 
-        if (noOfCrew > crewMates.Length)
-        {
-            noOfCrew -= 1;
-        }
+        
 
 
         if (selectedCrewmate != null)
@@ -81,37 +104,47 @@ public class GameManager : MonoBehaviour
             crewmateInfoPanel.SetActive(true);
             cipText.text = "Name: " + selectedCrewmate.name + "\nFavourite hobby: " + selectedCrewmate.favouriteHobby;
         }
+
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            print(noOfCrew);
+        }
     }
 
     public void CaughtCrewmate()
     {
         caughtText.SetActive(true);
 
-        //print(crewMates[noOfCrew]);
-        if (crewMates[noOfCrew] == null)
+        if (noOfCrew < crewMates.Length)
         {
-            CrewMate crew = Instantiate(crewmate, crewPos[noOfCrew].position, Quaternion.identity).GetComponent<CrewMate>();
-            crewMates[noOfCrew] = crew;
-            crew.transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-        else
-        {
-            for (int i = 0; i < crewMates.Length; i++)
+            //print(crewMates[noOfCrew]);
+            if (crewMates[noOfCrew] == null)
             {
-                if (crewMates[i] == null)
-                {
-                    CrewMate crew = Instantiate(crewmate, crewPos[i].position, Quaternion.identity).GetComponent<CrewMate>();
-                    crewMates[i] = crew;
+                CrewMate crew = Instantiate(crewmate, crewPos[noOfCrew].position, Quaternion.identity).GetComponent<CrewMate>();
+                crewMates[noOfCrew] = crew;
+                crew.transform.eulerAngles = new Vector3(0, 180, 0);
 
-                    crew.transform.eulerAngles = new Vector3(0, 180, 0);
-                    return;
+                noOfCrew += 1;
+            }
+            else
+            {
+                for (int i = 0; i < crewMates.Length; i++)
+                {
+                    if (crewMates[i] == null)
+                    {
+                        CrewMate crew = Instantiate(crewmate, crewPos[i].position, Quaternion.identity).GetComponent<CrewMate>();
+                        crewMates[i] = crew;
+
+                        crew.transform.eulerAngles = new Vector3(0, 180, 0);
+
+                        noOfCrew += 1;
+                        return;
+                    }
                 }
             }
         }
-
-
-
-        noOfCrew += 1;
     }
     public void cip()
     {

@@ -17,6 +17,8 @@ public class CrewMate : MonoBehaviour
     float tmr;
     bool selected;
 
+    int kld;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,11 +71,18 @@ public class CrewMate : MonoBehaviour
                                 //print("KILLIN!!!");
                                 Destroy(gameManage.crewMates[i].gameObject);
                                 gameManage.crewMates[i] = null;
-                                gameManage.noOfCrew -= 1;
+                                gameManage.noOfCrew -=1;
                                 transform.Rotate(0, 90, 0);
-                                Destroy(gameObject);
+
+                                kld += 1;
                             }
                         }
+                    }
+
+                    if (kld > 0)
+                    {
+                        gameManage.noOfCrew -= 1;
+                        Destroy(gameObject);
                     }
                 }
             }

@@ -28,6 +28,11 @@ public class Ship : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Caught();
+        }
     }
 
     private void OnMouseDown()
