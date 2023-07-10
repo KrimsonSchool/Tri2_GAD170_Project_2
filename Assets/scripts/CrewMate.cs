@@ -24,7 +24,7 @@ public class CrewMate : MonoBehaviour
     {
         gameManage = FindAnyObjectByType<GameManager>();
 
-        int isParasite = Random.Range(0, 5);
+        int isParasite = Random.Range(0, 4);
 
         if (isParasite == 0){
             parasite = true;
@@ -96,7 +96,6 @@ public class CrewMate : MonoBehaviour
         //crewmateInfoPanel.SetActive(true);
         //crewmateInfoPanel.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Name: " + name +"\nFavourite hobby: " + favouriteHobby;
 
-        gameManage.cip();
         gameManage.selectedCrewmate = this;
     }
 }
