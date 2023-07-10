@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         globalTimer = timerMax;
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
         h = globalTimer * Application.targetFrameRate;
     }
 
@@ -145,9 +145,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-    }
-    public void cip()
-    {
     }
 
     public void Fire()

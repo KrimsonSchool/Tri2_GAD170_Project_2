@@ -8,6 +8,8 @@ public class Ship : MonoBehaviour
     public int speed;
     float tmr;
     bool caught;
+
+    float life;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,13 @@ public class Ship : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Caught();
+        }
+
+        life += Time.deltaTime;
+
+        if (life >= 15)
+        {
+            Destroy(gameObject);
         }
     }
 
